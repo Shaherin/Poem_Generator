@@ -7,4 +7,4 @@ This project requires JWI (Java WordNet Interface) using WordNet 3.1, and the St
 
 
 
-Released under GNU General Public License v3.0
+Released under the GNU General Public License v3.0
