@@ -26,21 +26,24 @@ public class Poem_Generator_Demo {
 		
 		//initialise word tools
 		WordNet_Wrapper dict = WordNet_Wrapper.getInstance();
-	    
+	    //dict.loadIntoMemory();
+		
 		String word = "dogs";
 		String wordStem = dict.getWordStem(word, false);
 		
-	    dict.printDefinition( dict.getDefinition(wordStem) );
+	    //dict.printDefinition( dict.getDefinition(wordStem) );
 	    
-	    dict.printSynonyms( dict.getSynonyms(wordStem) );
+	    //dict.printSynonyms( dict.getSynonyms(wordStem) );
 	    
-	    dict.printRhymingWords( dict.getRhymingWords(wordStem));
+	    //dict.printHypernyms( dict.getHypernyms(wordStem) );
 	    
-	    dict.printHypernyms( dict.getHypernyms(wordStem) );
+	    //dict.printRhymingWords( dict.getRhymingWords(wordStem));    
 	    
 	    //dict.printHypernyms( dict.getHypernyms_ISynsetID(wordStem) );
 	   
 	    //dict.getRelationTriples("Obama was born in Hawaii. He is our president.");
 	    
+		
+		/** Test Stanford Wrapper */
 	}
 }

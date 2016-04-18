@@ -17,6 +17,9 @@ import java.util.regex.Pattern;
 
 import edu.mit.jwi.Dictionary;
 import edu.mit.jwi.IDictionary;
+import edu.mit.jwi.IRAMDictionary;
+import edu.mit.jwi.RAMDictionary;
+import edu.mit.jwi.data.ILoadPolicy;
 import edu.mit.jwi.item.IIndexWord;
 import edu.mit.jwi.item.ISynset;
 import edu.mit.jwi.item.ISynsetID;
@@ -43,9 +46,9 @@ public class WordNet_Wrapper {
 	{
 		try
 		{
-			File file = new File(path);
+			file = new File(path);
 			
-			dict = new Dictionary (file);
+			dict = new RAMDictionary(file, ILoadPolicy.NO_LOAD);
 			dict.open();
 		}
 		catch(IOException ex)
@@ -67,9 +70,26 @@ public class WordNet_Wrapper {
     private static final String path = "WordNet3.1-Dict";
     
     //JWI dictionary object
-    private IDictionary dict; 
+    private IRAMDictionary dict;
+    private File file;
  
-  /** Wordnet JWI Functions */	
+  /** WordNet JWI Functions */
+    /* -Loading into memory decreases execution time, however
+     *  time taken to load into memory is not insignificant
+     */
+    public void loadIntoMemory()
+    {
+    	try 
+    	{
+			dict.load(true);
+		}
+    	catch (InterruptedException ex) 
+    	{
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+    }
+    
     //returns an array containing word ID, lemma, and gloss(definition)
 	public String[] getDefinition(String word) throws IOException
 	{	
