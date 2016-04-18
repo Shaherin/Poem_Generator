@@ -14,9 +14,9 @@ import poem_generator.WordNet_Wrapper;
 
 /* -Class for generating poems
  * -Interacts with Poem_Generator, which has dependencies on Corpus and WordNet_Wrapper
- * -Poem_Generator, Corpus and WordNet_Wrapper are implemented as static singletons with eager 
- *  initialization, which is convenient for a small project like this where a singleton 
- *  would have few negative implications. 
+ * -Poem_Generator, Corpus, WordNet_Wrapper, and Stanford_Wrapper are implemented as non-static 
+ *  singletons with eager initialization, which is convenient for a small project like this 
+ *  where a singleton would have few negative implications. 
  */
 public class Poem_Generator_Demo {
 	/* -Currently just a test program for the wrapper class
