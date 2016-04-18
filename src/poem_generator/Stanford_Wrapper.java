@@ -20,7 +20,7 @@ public class Stanford_Wrapper {
 		// Create the Stanford CoreNLP pipeline
 		Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
-	    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
+	   pipeline = new StanfordCoreNLP(props);
 	}
 	
 	//private instance
@@ -33,10 +33,10 @@ public class Stanford_Wrapper {
 	}
 	
   /** Data Fields */
-	private static StanfordCoreNLP pipeline;
+	private StanfordCoreNLP pipeline;
 	
   /** Stanford Functions */
-	public static void getRelationTriples(String line){
+	public void getRelationTriples(String line){
 		
 	    // Annotate an example document.
 	    //Annotation doc = new Annotation("Obama was born in Hawaii. He is our president.");
@@ -67,7 +67,7 @@ public class Stanford_Wrapper {
 	
   /** Print Functions */
 	//prints a single RelationTriple
-		public static void printRelationTriple(RelationTriple triple)
+		public void printRelationTriple(RelationTriple triple)
 		{   
 			//TODO
 			

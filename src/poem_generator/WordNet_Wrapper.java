@@ -67,7 +67,7 @@ public class WordNet_Wrapper {
     private static final String path = "WordNet3.1-Dict";
     
     //JWI dictionary object
-    private static IDictionary dict; 
+    private IDictionary dict; 
  
   /** Wordnet JWI Functions */	
     //returns an array containing word ID, lemma, and gloss(definition)
