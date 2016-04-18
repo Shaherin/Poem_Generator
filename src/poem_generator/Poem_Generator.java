@@ -7,6 +7,7 @@ public class Poem_Generator {
 	private Poem_Generator()
 	{
 		corpus = Corpus.getInstance();
+		wordTools = WordNet_Wrapper.getInstance();
 	}
     
 	//private instance
@@ -20,7 +21,7 @@ public class Poem_Generator {
 	
   /** Variables */
 	private static Corpus corpus;
-  
+    private static WordNet_Wrapper wordTools;
   
 	
   /** Generation Functions */
@@ -50,10 +51,10 @@ public class Poem_Generator {
 	       			 * •Interlude ie. no rhyme - random sentence  
 	       			 */
 	       	    	
-	       	    	lastRhymingCouplet = false;
+	       	    	//lastRhymingCouplet = false;
         		}
 	        }	
-	        //skip a line
+	        //skip a line for next stanza
 	    }
     }
 		

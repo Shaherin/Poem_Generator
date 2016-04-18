@@ -49,7 +49,8 @@ public class Corpus {
 				
 		}
 		catch(FileNotFoundException ex)
-		{
+		{   
+			//exception safe if corpus is stored in project folder
 			System.out.println("Unable to open file " + path + "\n");		
 		}
 			
@@ -66,9 +67,9 @@ public class Corpus {
 	    CONTAINS_SUBJECT, CONTAINS_WORD, CONTAINS_RHYME, RANDOM	
 	}
 	
-	/* -Randomises the Sentence Type generated
-	 * -randomSentenceType used so as not to create a new random each time this function 
-	 *  is called
+	/* -Randomizes the Sentence Type generated
+	 * -randomSentenceType used so as not to create a new random object each time this 
+	 *  function is called
 	 */
 	private static Random randomSentenceType = new Random(); 
 	public static SentenceType getRandomSentenceType()
