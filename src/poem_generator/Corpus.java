@@ -68,8 +68,8 @@ public class Corpus {
 	}
 	
 	/* -Randomizes the Sentence Type generated
-	 * -randomSentenceType used so as not to create a new random object each time this 
-	 *  function is called
+	 * -Random randomSentenceType used so as not to create a new random object 
+	 *  each time this function is called
 	 */
 	private static Random randomSentenceType = new Random(); 
 	public static SentenceType getRandomSentenceType()

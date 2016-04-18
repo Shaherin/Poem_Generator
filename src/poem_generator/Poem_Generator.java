@@ -8,6 +8,7 @@ public class Poem_Generator {
 	{
 		corpus = Corpus.getInstance();
 		wordTools = WordNet_Wrapper.getInstance();
+		stanfordTools = Stanford_Wrapper.getInstance();
 	}
     
 	//private instance
@@ -22,10 +23,11 @@ public class Poem_Generator {
   /** Data Fields */
 	private static Corpus corpus;
     private static WordNet_Wrapper wordTools;
+    private static Stanford_Wrapper stanfordTools;
   
 	
   /** Generation Functions */
-    public static void generateFreeVerse(int numStanzas, int linesPerStanza, float rhymeBias)
+    public void generateFreeVerse(int numStanzas, int linesPerStanza, float rhymeBias)
 	{   
 		String Poem = null;
 			
@@ -58,12 +60,12 @@ public class Poem_Generator {
 	    }
     }
 		
-	public static void generateSonnet()
+	public void generateSonnet()
 	{
 		//TODO
 	}
 		
-	public static void generateHaiku()
+	public void generateHaiku()
 	{
 		//relies on syllables
 		//TODO

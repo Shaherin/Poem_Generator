@@ -137,7 +137,7 @@ public class WordNet_Wrapper {
 	public ISynset getSynonyms_ISynset(String word)
 	{
 		// look up first sense of the word 
-		IIndexWord idxWord = dict.getIndexWord(word, POS. NOUN );
+		IIndexWord idxWord = dict.getIndexWord(word, POS.NOUN );
 		IWordID wordID = idxWord.getWordIDs().get(0) ; // 1st meaning
 		IWord iword = dict.getWord( wordID );
 		ISynset synset = iword.getSynset();
@@ -155,7 +155,6 @@ public class WordNet_Wrapper {
 			for( ISynsetID sid : hypernyms )
 			{
 			    words = dict.getSynset(sid).getWords();
-				//System.out.print(sid + " {");
 						     
 				for( Iterator <IWord > i = words.iterator(); i.hasNext() ; )
 				{
