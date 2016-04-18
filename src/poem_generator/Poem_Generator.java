@@ -19,7 +19,7 @@ public class Poem_Generator {
 		return generator;
 	}
 	
-  /** Variables */
+  /** Data Fields */
 	private static Corpus corpus;
     private static WordNet_Wrapper wordTools;
   

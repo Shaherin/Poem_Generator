@@ -14,20 +14,33 @@ import edu.stanford.nlp.util.CoreMap;
  *  Stanford CoreNLP library
  */
 public class Stanford_Wrapper {
-    
-	
-	
-	
-  /** Stanford Functions */
-	public static void getRelationTriples(String line){
+  /** Singleton Functions */    
+	private Stanford_Wrapper()
+	{
 		// Create the Stanford CoreNLP pipeline
 		Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
 	    StanfordCoreNLP pipeline = new StanfordCoreNLP(props);
-
+	}
+	
+	//private instance
+	private static final Stanford_Wrapper stanfordNLP = new Stanford_Wrapper();
+	
+	//return instance
+	public static Stanford_Wrapper getInstance()
+	{
+		return stanfordNLP;
+	}
+	
+  /** Data Fields */
+	private static StanfordCoreNLP pipeline;
+	
+  /** Stanford Functions */
+	public static void getRelationTriples(String line){
+		
 	    // Annotate an example document.
-	    Annotation doc = new Annotation("Obama was born in Hawaii. He is our president.");
-	    //Annotation doc = new Annotation(line);
+	    //Annotation doc = new Annotation("Obama was born in Hawaii. He is our president.");
+	    Annotation doc = new Annotation(line);
 	    pipeline.annotate(doc);
 
 	    // Loop over sentences in the document
