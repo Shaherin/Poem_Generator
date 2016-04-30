@@ -1,5 +1,5 @@
 # Poem_Generator
-UKZN COMP 316 Semester project - 2016
+UKZN COMP 316 (Natural Language Processing) Semester project - 2016
 
 Coded in eclipse using Java 8. Includes only the src folder of the eclipse project.
 
