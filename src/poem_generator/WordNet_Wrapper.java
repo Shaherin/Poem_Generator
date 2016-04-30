@@ -194,11 +194,12 @@ public class WordNet_Wrapper{
 	    // Get the input stream through URL Connection
 	    URLConnection con;
 		try 
-		{
+		{   
 			con = url.openConnection();
 		} 
 		catch (IOException e) 
-		{
+		{   
+			System.out.println("URL exception connecting to rhymebrain.com. Retrying...");
 			return null;
 		}
 	    
@@ -208,7 +209,8 @@ public class WordNet_Wrapper{
 			is = con.getInputStream();
 		} 
 		catch (IOException e) 
-		{
+		{   
+			System.out.println("Input stream exception connecting to rhymebrain.com. Retrying...");
 			return null;
 		}
 		
@@ -225,7 +227,7 @@ public class WordNet_Wrapper{
          * -Maybe select words based on freqency/score
 	     * 
 	     * */  
-	     String line = null;
+	     String line = new String();
 	     // read each line
 	     try 
 	     {

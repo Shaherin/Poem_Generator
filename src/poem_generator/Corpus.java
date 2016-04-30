@@ -30,11 +30,14 @@ public class Corpus {
 		word_tools = WordNet_Wrapper.getInstance();
 		//stanford_tools = Stanford_Wrapper.getInstance();
 		
+		executor = new Executor_Wrapper();
+		
 		loadCorpus(path);
 	};
     
 	//private instance
 	private static Corpus corpus;
+	Executor_Wrapper executor;
 	
 	//get instance
 	public static synchronized Corpus getInstance()
@@ -149,7 +152,7 @@ public class Corpus {
 	private static Random random = new Random();
 	public String getSentence(SentenceType type, String word)
 	{   
-		ArrayList<String> sentences = new ArrayList<String>(); //list of sentences retrieved from the corpus
+		List<String> sentences = new ArrayList<String>(); //list of sentences retrieved from the corpus
 		String final_sentence = null; //sentence to be returned from the list
 		
 		switch(type)
@@ -181,8 +184,11 @@ public class Corpus {
 				    Pattern rhyming_pattern = Pattern.compile("(\\b"+ rhyming_word +"\\b)(\\p{Punct})?$"); 
 				    
 				    //search corpus for sentences that match rhyming_pattern
-				    sentences = searchCorpus(rhyming_pattern, corpus_string_full);	
-				    //System.out.println(sentences.get(0));
+				    //sentences = searchCorpus(rhyming_pattern, corpus_string_full);
+				    
+				    List<Callable<ArrayList<String>>> callables = searchCorpus(rhyming_pattern);
+                    sentences = executor.invokeAll(callables);
+				                                
 				}
 		
 				if(!sentences.isEmpty())

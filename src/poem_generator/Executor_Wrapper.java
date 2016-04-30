@@ -17,7 +17,7 @@ public class Executor_Wrapper {
 	}
 	
 	/** Data fields*/
-	private static ExecutorService executor;
+	private ExecutorService executor;
 	
 	/** Functions */
 	public List<String> invokeAll(List<Callable<ArrayList<String>>> callables)
@@ -38,7 +38,15 @@ public class Executor_Wrapper {
 		for( Future<ArrayList<String>> future : futures)
 		{
 			try {
+				/*for(int i = 0; i<future.get().size(); i++)
+				{   
+					//if(future.get().get(i) !=null)
+					//results.add(future.get().get(i));
+					
+				}//*/
+				
 				results.addAll(future.get());
+				
 			} catch (InterruptedException | ExecutionException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -98,7 +106,7 @@ public class Executor_Wrapper {
 	}
 	
 	//safe shutdown
-	public static void Shutdown_Executor()
+	public void Shutdown_Executor()
     {
     	/** Shutdown executor */
 		System.out.println("\nShutting down executor");
