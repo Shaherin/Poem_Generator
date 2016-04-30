@@ -1,21 +1,12 @@
 package poem_generator;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Future;
+
 
 import poem_generator.Poem_Generator;
-import poem_generator.Corpus;
-import poem_generator.WordNet_Wrapper;
-import edu.stanford.nlp.tagger.maxent.MaxentTagger;
+
 /* -Class for generating poems
  * -Interacts with Poem_Generator, which has dependencies on Corpus and WordNet_Wrapper
  * -Poem_Generator, WordNet_Wrapper, and Stanford_Wrapper are implemented as non-static, 

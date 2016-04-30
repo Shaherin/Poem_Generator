@@ -1,8 +1,6 @@
 package poem_generator;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Hashtable;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 

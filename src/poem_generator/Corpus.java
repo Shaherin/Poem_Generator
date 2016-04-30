@@ -28,7 +28,7 @@ public class Corpus {
 		corpus_string_4 = new String();
 			
 		word_tools = WordNet_Wrapper.getInstance();
-		//stanford_tools = Stanford_Wrapper.getInstance();
+		stanford_tools = Stanford_Wrapper.getInstance();
 		
 		executor = new Executor_Wrapper();
 		
@@ -158,16 +158,51 @@ public class Corpus {
 		switch(type)
 		{
 			case CONTAINS_SUBJECT:
+			{
 				//get subject with stanford_tools
+				//here we are required to pass a sentence as String word for this to work
+				String[] relation_triple = stanford_tools.getRelationTriple(word);
+				String subject = relation_triple[0];
 				
-				//find sentence
-				//searchCorpus(word);
-			    //TODO
+				//find a word in sentence
+			    Pattern pattern = Pattern.compile("(\\b"+ subject +"\\b)"); 
+				
+				//search corpus for sentences that match rhyming_pattern
+			    List<Callable<ArrayList<String>>> callables = searchCorpus(pattern);
+                sentences = executor.invokeAll(callables);
+				
+				if(!sentences.isEmpty())
+				{   
+					//choose a random sentence //((max - min) + 1) + min
+					int index = random.nextInt(sentences.size());
+					final_sentence = sentences.get(index);
+
+					return final_sentence;
+				}
 			    break;
-			case CONTAINS_WORD:
-			    //TODO
+			}
+			case CONTAINS_WORD:			
+			{	
+				//find a word in sentence
+			    Pattern pattern = Pattern.compile("(\\b"+ word +"\\b)"); 
+				
+				//search corpus for sentences that match rhyming_pattern
+			    List<Callable<ArrayList<String>>> callables = searchCorpus(pattern);
+                sentences = executor.invokeAll(callables);
+				
+				if(!sentences.isEmpty())
+				{   
+					//choose a random sentence //((max - min) + 1) + min
+					int index = random.nextInt(sentences.size());
+					final_sentence = sentences.get(index);
+
+					return final_sentence;
+				}
+				
 			    break;
+			}    
 			case CONTAINS_RHYME:				
+			{	
 				String rhyming_word = null; //chosen word 	
 				
 				//get list of rhyming words
@@ -180,15 +215,15 @@ public class Corpus {
 					int random_rhyme = random.nextInt(rhymes.size()-1);
 				    rhyming_word = rhymes.get(random_rhyme); 
 				    
-					//find a word at the end of a sentence - look for \n character
+					//find a word at the end of a sentence - look for
 				    Pattern rhyming_pattern = Pattern.compile("(\\b"+ rhyming_word +"\\b)(\\p{Punct})?$"); 
+				       
 				    
 				    //search corpus for sentences that match rhyming_pattern
-				    //sentences = searchCorpus(rhyming_pattern, corpus_string_full);
-				    
 				    List<Callable<ArrayList<String>>> callables = searchCorpus(rhyming_pattern);
                     sentences = executor.invokeAll(callables);
-				                                
+				    
+                    //sentences = searchCorpus(rhyming_pattern, corpus_string_full);
 				}
 		
 				if(!sentences.isEmpty())
@@ -201,6 +236,7 @@ public class Corpus {
 				}
 				
 			    break;
+			}    
 			case RANDOM:
 			{
 				/* - Chooses a random poem to select a line from
@@ -309,10 +345,8 @@ public class Corpus {
 			    local_scanner.close();
 			    
 			    break;
-		    }	
-		}//end switch
-		
-		
+			}	
+		}//end switch	
 		
         return final_sentence; //null is returned if no sentence is found or some error occurs
 	    
