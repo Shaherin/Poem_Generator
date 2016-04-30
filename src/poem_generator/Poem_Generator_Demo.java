@@ -15,8 +15,6 @@ import poem_generator.Poem_Generator;
  */
 public class Poem_Generator_Demo
 {
-	/* -Currently just a test program for the wrapper class
-	 */
 	public static void main(String[] args) throws IOException, InterruptedException, ExecutionException{	    
 		
 		/** Time */
