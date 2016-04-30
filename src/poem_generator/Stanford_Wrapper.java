@@ -1,7 +1,10 @@
 package poem_generator;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Properties;
+import java.util.concurrent.Callable;
 
 import edu.stanford.nlp.ie.util.RelationTriple;
 import edu.stanford.nlp.ling.CoreAnnotations;
@@ -20,7 +23,7 @@ public class Stanford_Wrapper {
 		// Create the Stanford CoreNLP pipeline
 		Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
-	   pipeline = new StanfordCoreNLP(props);
+	    pipeline = new StanfordCoreNLP(props);
 	}
 	
 	//private instance
@@ -36,13 +39,20 @@ public class Stanford_Wrapper {
 	private StanfordCoreNLP pipeline;
 	
   /** Stanford Functions */
-	public void getRelationTriples(String line){
-		
+	/* returns an array size 3 consisting of
+	 * [0] = subject
+	 * [1] = relation
+	 * [2] = object
+	 */
+	public String[] getRelationTriple(String line)
+	{
 	    // Annotate an example document.
 	    //Annotation doc = new Annotation("Obama was born in Hawaii. He is our president.");
 	    Annotation doc = new Annotation(line);
 	    pipeline.annotate(doc);
-
+        
+	    String[] relation_triple = null; 
+	    
 	    // Loop over sentences in the document
 	    for (CoreMap sentence : doc.get(CoreAnnotations.SentencesAnnotation.class)) {
 	    	//Get the OpenIE triples for the sentence
@@ -50,19 +60,34 @@ public class Stanford_Wrapper {
 	    	
 	    	for (RelationTriple triple : triples)
             {
-	    		System.out.println(triple.confidence + "\t" +
+	    		/*System.out.println(triple.confidence + "\t" +
 	    					       triple.subjectLemmaGloss() + "\t" +
 	    					       triple.relationLemmaGloss() + "\t" +
 	    					       triple.objectLemmaGloss());
+	    					      
+	    		System.out.println(triple.object);
+	    		System.out.println(triple.objectGloss());*/
+	    		
+	    		/*System.out.println(triple.confidence + "\t" +
+	    	            triple.subjectGloss() + "\t" +
+	    	            triple.relationGloss() + "\t" +
+	    	            triple.objectGloss());*/
+	    		
+	    		relation_triple = new String[3];
+	    		
+	    	    relation_triple[0] = triple.subjectGloss(); 
+	    	    relation_triple[1] = triple.relationGloss();
+	    	    relation_triple[2] = triple.objectGloss();
 	    	}
         }
-	    
-	    //TODO
-	    
-	    //for a single sentence
-	    //CoreMap sentence = doc.get(CoreAnnotations.SentencesAnnotation.class).get;
-	    	
-	    //RelationTriple triple = 
+	   
+	    return relation_triple;
+	}
+	
+  /** Multithreading functions */
+	public Callable<String[]> getRelationTriple_Callable(String sentence)
+	{
+		return () -> { return getRelationTriple(sentence); };
 	}
 	
   /** Print Functions */
