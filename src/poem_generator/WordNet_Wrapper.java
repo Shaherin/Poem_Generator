@@ -146,7 +146,7 @@ public class WordNet_Wrapper{
 		return synset;
 	}
 	
-	//get hypernyms
+	//get hypernyms (broad category eg. hypernym of dog is canine)
 	public ArrayList<String> getHypernyms(String word)
 	{
 		 List <ISynsetID> hypernyms = getHypernyms_ISynsetID(word);
@@ -180,7 +180,114 @@ public class WordNet_Wrapper{
 				 
 		return hypernyms;
 	}
+	
+	//get hyponyms - opposite of hypernym (specific category eg. hyponym of canine is dog)
+	public ArrayList<String> getHyponyms(String word)
+	{
+		 List <ISynsetID> hyponyms = getHypernyms_ISynsetID(word);
 		
+		 List <IWord > words;
+		 ArrayList<String> s_hyponyms = new ArrayList<String>();
+			for( ISynsetID sid : hyponyms )
+			{
+			    words = dict.getSynset(sid).getWords();
+						     
+				for( Iterator <IWord > i = words.iterator(); i.hasNext() ; )
+				{
+					s_hyponyms.add( i.next().getLemma() );
+				}
+		    }
+		 
+		 return s_hyponyms;
+		 
+	}
+	
+	public List<ISynsetID> getHyponyms_ISynsetID(String word)
+	{
+		// get the synset
+		IIndexWord idxWord = dict.getIndexWord(word, POS.NOUN );
+		IWordID wordID = idxWord.getWordIDs().get(0) ; // 1st meaning
+		IWord iword = dict.getWord( wordID );
+		ISynset synset = iword.getSynset();
+		
+	    // get the hyponyms
+		List <ISynsetID> hyponyms = synset.getRelatedSynsets(Pointer.HYPONYM);
+				 
+		return hyponyms;
+	}	
+	
+	//get holonyms - 'X' is a holonym of 'Y' if Y's are parts/members of X's
+	//returns X ie. the broader context
+	public ArrayList<String> getHolonyms(String word)
+	{
+		 List <ISynsetID> holonyms = getHypernyms_ISynsetID(word);
+		
+		 List <IWord > words;
+		 ArrayList<String> s_holonyms = new ArrayList<String>();
+			for( ISynsetID sid : holonyms )
+			{
+			    words = dict.getSynset(sid).getWords();
+						     
+				for( Iterator <IWord > i = words.iterator(); i.hasNext() ; )
+				{
+					s_holonyms.add( i.next().getLemma() );
+				}
+		    }
+		 
+		 return s_holonyms;
+		 
+	}
+	
+	public List<ISynsetID> getHolonyms_ISynsetID(String word)
+	{
+		// get the synset
+		IIndexWord idxWord = dict.getIndexWord(word, POS.NOUN );
+		IWordID wordID = idxWord.getWordIDs().get(0) ; // 1st meaning
+		IWord iword = dict.getWord( wordID );
+		ISynset synset = iword.getSynset();
+		
+	    // get the holonyms
+		List <ISynsetID> holonyms = synset.getRelatedSynsets(Pointer.HOLONYM_PART);
+				 
+		return holonyms;
+	}
+	
+	//get meronyms - 'X' is a meronym of 'Y' if X's are parts/members of Y's
+	//returns X ie. the smaller context
+	public ArrayList<String> getMeronyms(String word)
+	{
+		 List <ISynsetID> meronyms = getHypernyms_ISynsetID(word);
+			
+		 List <IWord > words;
+		 ArrayList<String> s_meronyms = new ArrayList<String>();
+			for( ISynsetID sid : meronyms )
+			{
+			    words = dict.getSynset(sid).getWords();
+							     
+				for( Iterator <IWord > i = words.iterator(); i.hasNext() ; )
+				{
+					s_meronyms.add( i.next().getLemma() );
+				}
+		    }
+			 
+		 return s_meronyms;
+			 
+	}
+		
+	public List<ISynsetID> getMeronyms_ISynsetID(String word)
+	{
+		// get the synset
+		IIndexWord idxWord = dict.getIndexWord(word, POS.NOUN );
+		IWordID wordID = idxWord.getWordIDs().get(0) ; // 1st meaning
+		IWord iword = dict.getWord( wordID );
+		ISynset synset = iword.getSynset();
+			
+	    // get the meronyms
+		List <ISynsetID> meronyms = synset.getRelatedSynsets(Pointer.MERONYM_PART);
+					 
+		return meronyms;
+	}
+
 	//returns arraylist of rhyming words using rhymebrain.com
 	public ArrayList<String> getRhymingWords(String word) {	
 	    // Make a URL to the web page
@@ -266,6 +373,21 @@ public class WordNet_Wrapper{
 		return () -> { return getHypernyms(word); };
 	}
 	
+	public Callable<ArrayList<String>> getHyponyms_Callable(String word)
+	{
+		return () -> { return getHyponyms(word); };
+	}
+	
+	public Callable<ArrayList<String>> getHolonyms_Callable(String word)
+	{
+		return () -> { return getHolonyms(word); };
+	}
+	
+	public Callable<ArrayList<String>> getMeronyms_Callable(String word)
+	{
+		return () -> { return getMeronyms(word); };
+	}
+	
 	public Callable<ArrayList<String>> getRhymingWords_Callable(String word)
 	{
 		return () -> { return getRhymingWords(word); };
@@ -280,6 +402,14 @@ public class WordNet_Wrapper{
 		 System.out.println( " Gloss = " + definition[2] );
 		 
 		 System.out.println("");
+	}
+	
+	public static void printArrayList(ArrayList<String> list)
+	{
+		for(int i = 0 ; i<list.size() ; i++)
+		{
+			System.out.println( list.get(i) );
+		}
 	}
 	
 	public static void printSynonyms(ISynset synset)
