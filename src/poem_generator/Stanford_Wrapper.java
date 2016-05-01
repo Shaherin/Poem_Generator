@@ -1,6 +1,11 @@
 package poem_generator;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.StringReader;
 import java.util.Collection;
+import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.Callable;
 
@@ -10,6 +15,10 @@ import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 import edu.stanford.nlp.util.CoreMap;
+import edu.stanford.nlp.ling.Sentence;
+import edu.stanford.nlp.ling.TaggedWord;
+import edu.stanford.nlp.ling.HasWord;
+import edu.stanford.nlp.tagger.maxent.MaxentTagger;
 
 /* -Provides relevant functions for poem generation related to the 
  *  Stanford CoreNLP library
@@ -80,6 +89,16 @@ public class Stanford_Wrapper {
         }
 	   
 	    return relation_triple;
+	}
+	
+	public String POS_Tagger(String line)
+	{   
+		MaxentTagger tagger = new MaxentTagger("stanford-postagger-full-2015-12-09//models//english-caseless-left3words-distsim.tagger");
+		
+		String taggedString = tagger.tagString(line);
+		//String [] words = taggedString.split(" ");
+			
+		return taggedString;
 	}
 	
   /** Multithreading functions */
