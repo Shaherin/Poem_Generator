@@ -203,26 +203,26 @@ public class Corpus {
 			}    
 			case CONTAINS_RHYME:				
 			{	
-				String rhyming_word = null; //chosen word 	
+				//String rhyming_word = null; //chosen word 	
 				
 				//get list of rhyming words
-				ArrayList<String> rhymes = word_tools.getRhymingWords(word);
-				if(rhymes != null)
-				{   		
+				//ArrayList<String> rhymes = word_tools.getRhymingWords(word);
+				//if(rhymes != null)
+				//{   		
 					//choose random rhyming word
-					int random_rhyme = random.nextInt(rhymes.size()-1);
-				    rhyming_word = rhymes.get(random_rhyme); 
+					//int random_rhyme = random.nextInt(rhymes.size()-1);
+				   // rhyming_word = rhymes.get(random_rhyme); 
 				    
 					//find a word at the end of a sentence - look for
-				    Pattern rhyming_pattern = Pattern.compile("(\\b"+ rhyming_word +"\\b)(\\p{Punct})?$"); 
-				       
+				    //Pattern rhyming_pattern = Pattern.compile("(\\b"+ rhyming_word +"\\b)(\\p{Punct})?$"); 
+				Pattern rhyming_pattern = Pattern.compile("(\\b"+ word +"\\b)(\\p{Punct})?$");   
 				    
 				    //search corpus for sentences that match rhyming_pattern
 				    List<Callable<ArrayList<String>>> callables = searchCorpus(rhyming_pattern);
                     sentences = executor.invokeAll(callables);
 				    
                     //sentences = searchCorpus(rhyming_pattern, corpus_string_full);
-				}
+				//}
 		
 				if(!sentences.isEmpty())
 				{   
