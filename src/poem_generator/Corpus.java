@@ -12,7 +12,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /* -Handles loading of corpus, and retrieving sentences from the corpus
- * -Corpus is stored as a single string, with delimiters for ease of parsing
+ * -Corpus is stored as a set of 4 strings, which allows the corpus to be searched on 4 threads
  * -Poems are separated by #
  * 
  */
@@ -28,7 +28,7 @@ public class Corpus {
 		corpus_string_4 = new String();
 			
 		word_tools = WordNet_Wrapper.getInstance();
-		stanford_tools = Stanford_Wrapper.getInstance();
+		//stanford_tools = Stanford_Wrapper.getInstance();
 		
 		executor = new Executor_Wrapper();
 		
@@ -208,9 +208,7 @@ public class Corpus {
 				//get list of rhyming words
 				ArrayList<String> rhymes = word_tools.getRhymingWords(word);
 				if(rhymes != null)
-				{   
-					//TODO -this case is not finished
-					
+				{   		
 					//choose random rhyming word
 					int random_rhyme = random.nextInt(rhymes.size()-1);
 				    rhyming_word = rhymes.get(random_rhyme); 
