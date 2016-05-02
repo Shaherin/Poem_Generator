@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Properties;
@@ -14,7 +15,11 @@ import edu.stanford.nlp.ling.CoreAnnotations;
 import edu.stanford.nlp.naturalli.NaturalLogicAnnotations;
 import edu.stanford.nlp.pipeline.Annotation;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
+import edu.stanford.nlp.process.CoreLabelTokenFactory;
+import edu.stanford.nlp.process.DocumentPreprocessor;
+import edu.stanford.nlp.process.PTBTokenizer;
 import edu.stanford.nlp.util.CoreMap;
+import edu.stanford.nlp.ling.CoreLabel;
 import edu.stanford.nlp.ling.Sentence;
 import edu.stanford.nlp.ling.TaggedWord;
 import edu.stanford.nlp.ling.HasWord;
@@ -89,6 +94,20 @@ public class Stanford_Wrapper {
         }
 	   
 	    return relation_triple;
+	}
+	
+	//returns arraylist of tokens for a given string using PTB tokenization
+	public ArrayList<String> tokenize(String line)
+	{    
+		  // By token
+	      PTBTokenizer<CoreLabel> ptbt = new PTBTokenizer<>(new StringReader(line),
+	              new CoreLabelTokenFactory(), "");
+	      while (ptbt.hasNext()) {
+	        CoreLabel label = ptbt.next();
+	        System.out.println(label);
+	      }
+		
+	      return null;
 	}
 	
 	public String POS_Tagger(String line)

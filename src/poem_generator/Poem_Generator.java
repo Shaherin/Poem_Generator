@@ -59,7 +59,7 @@ public class Poem_Generator {
 	        //boolean lastRhymingCouplet = false; //true if last 2 lines rhymed
 	        //float rhymeBias; //probability of a next sentence rhyming
 	        
-	        //generate first line
+	        //generate first line of the stanza 
 	        Poem.add(corpus.getSentence(Corpus.SentenceType.RANDOM)); //append random sentence
 	        for(int line = 1 ; line<linesPerStanza ; line++)
 	        {   
