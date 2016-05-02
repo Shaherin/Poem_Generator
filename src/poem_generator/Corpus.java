@@ -221,7 +221,7 @@ public class Corpus {
 				    List<Callable<ArrayList<String>>> callables = searchCorpus(rhyming_pattern);
                     sentences = executor.invokeAll(callables);
 				    
-                    //sentences = searchCorpus(rhyming_pattern, corpus_string_full);
+                    ///sentences = searchCorpus(rhyming_pattern, corpus_string_full);
 				//}
 		
 				if(!sentences.isEmpty())
