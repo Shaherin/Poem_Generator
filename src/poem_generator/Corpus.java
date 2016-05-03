@@ -51,8 +51,9 @@ public class Corpus {
 	}
 	
   /** Data Fields */	
-	private static final String path = "corpusV2.txt";
-	private static final int poem_count = 113;
+	private static final String path = "corpusV4.txt";
+	//private static final int poem_count = 113; //v2
+	private static final int poem_count = 150; //v4
 	
 	/* -Corpus is loaded and stored in 4 strings.
 	 * -Each string is searched on a seperate thread
@@ -66,7 +67,8 @@ public class Corpus {
 	private String corpus_string_4;
 	
 	//break points to split corpus into 4 parts
-	static int break_points[] = {29, 58, 87, 113};
+	//static int break_points[] = {29, 58, 87, 113}; //v2
+	static int break_points[] = {38, 76, 114, 150}; //v4
 	
 	private static WordNet_Wrapper word_tools;
 	private static Stanford_Wrapper stanford_tools;
@@ -135,7 +137,8 @@ public class Corpus {
   /** Sentence Fetching */
 	public static enum SentenceType
 	{
-	    CONTAINS_SUBJECT, CONTAINS_WORD, CONTAINS_RHYME, RANDOM	
+	    CONTAINS_SUBJECT, CONTAINS_WORD, CONTAINS_RHYME, RANDOM,	
+	    STARTS_WITH_DETERMINER
 	}
 	
 	/* -Randomizes the Sentence Type generated
@@ -234,14 +237,20 @@ public class Corpus {
 				}
 				
 			    break;
-			}    
+			} 
+			case STARTS_WITH_DETERMINER:
+			{   
+				//TODO
+				break;
+			}
 			case RANDOM:
 			{
 				/* - Chooses a random poem to select a line from
 				 * - reads poem into a string and counts lines
 				 * - chooses a random line from poem
 				 */
-                
+              while(final_sentence == null)
+              {
 				//choose a random poem
 				int poem_choice = random.nextInt(poem_count) + 1; //((max - min) + 1) + min
 				int poem_length = 0;//length of chosen poem initialized to 0
@@ -249,9 +258,9 @@ public class Corpus {
 				
 				int current_poem = 1;
 				Scanner local_scanner = null;
-				
+			  	
 				//determine which of the 4 sections of the corpus current poem is in
-				if(poem_choice>=0 && poem_choice <= break_points[0])
+				if(poem_choice>=1 && poem_choice <= break_points[0])
 				{
 					local_scanner = new Scanner(corpus_string_1);
 					current_poem = 1;
@@ -274,7 +283,7 @@ public class Corpus {
 				else
 				{
 					local_scanner = new Scanner(corpus_string_full);
-					//current_poem = 1;
+					current_poem = 1;
 				}
 				
 				//find beginning of chosen poem in corpus section
@@ -341,7 +350,7 @@ public class Corpus {
 			    }			    	  
 			    
 			    local_scanner.close();
-			    
+              }  
 			    break;
 			}	
 		}//end switch	
@@ -415,7 +424,7 @@ public class Corpus {
 		 List<Callable<ArrayList<String>>> callables = new ArrayList<Callable<ArrayList<String>>>();
 		 
 		 Callable<ArrayList<String>> search1 = () -> {
-			 return searchCorpus(pattern, corpus_string_full);	
+			 return searchCorpus(pattern, corpus_string_1);	
 		 };
 		 
 		 Callable<ArrayList<String>> search2 = () -> {

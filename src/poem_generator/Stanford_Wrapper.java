@@ -33,9 +33,12 @@ public class Stanford_Wrapper {
 	private Stanford_Wrapper()
 	{
 		// Create the Stanford CoreNLP pipeline
+		tagger = new MaxentTagger("stanford-postagger-full-2015-12-09//models//english-caseless-left3words-distsim.tagger");
+		
 		Properties props = new Properties();
 	    props.setProperty("annotators", "tokenize,ssplit,pos,lemma,depparse,natlog,openie");
-	    pipeline = new StanfordCoreNLP(props);
+	    pipeline = new StanfordCoreNLP(props);    
+	    
 	}
 	
 	//private instance
@@ -49,6 +52,7 @@ public class Stanford_Wrapper {
 	
   /** Data Fields */
 	private StanfordCoreNLP pipeline;
+	private MaxentTagger tagger;
 	
   /** Stanford Functions */
 	/* returns an array size 3 consisting of
@@ -111,9 +115,7 @@ public class Stanford_Wrapper {
 	}
 	
 	public String POS_Tagger(String line)
-	{   
-		MaxentTagger tagger = new MaxentTagger("stanford-postagger-full-2015-12-09//models//english-caseless-left3words-distsim.tagger");
-		
+	{   	
 		String taggedString = tagger.tagString(line);
 		//String [] words = taggedString.split(" ");
 			

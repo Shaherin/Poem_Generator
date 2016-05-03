@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
 
+
 import poem_generator.Poem_Generator;
 
 /* -Class for generating poems
@@ -22,8 +23,12 @@ public class Poem_Generator_Demo
 		
 		/** Test Poem_Generator */
 		Poem_Generator generator = Poem_Generator.getInstance();
-		ArrayList<String> poem = generator.generateFreeVerse(2, 4, 0);
-
+		
+		System.out.println("Generating...");
+		ArrayList<String> poem = generator.generateFreeVerse(1, 8);
+		//ArrayList<String> poem = generator.generateSonnet();
+            
+		    //print poem
 		    for(int i = 0 ; i<poem.size(); i++)
 		    {
 			    System.out.println(poem.get(i));
@@ -31,11 +36,26 @@ public class Poem_Generator_Demo
 		
 		//executor.Shutdown_Executor();
 		
+		/** Testing wordnet & stanford*/
+		//WordNet_Wrapper wordnet = WordNet_Wrapper.getInstance();
+		//ArrayList<String> hypernyms = wordnet.getHypernyms( wordnet.getWordStem("dog") );
+		//ArrayList<String> holonyms = wordnet.getHolonyms( "canine" );
+		
+		//WordNet_Wrapper.printArrayList(holonyms);	
+		
+		//Stanford_Wrapper stanford = Stanford_Wrapper.getInstance();
+		//String str = stanford.POS_Tagger("Hi I'm Steve");
+		//System.out.println(str);//*/
+		//stanford.tokenize("Hi I'm Steve");
+		
+		//Corpus corpus = Corpus.getInstance();
+		//System.out.println(corpus.getSentence(Corpus.SentenceType.RANDOM));
+		
 		long end = System.nanoTime();
 		long elapsed_time = (end - begin) / 1000000; //in ms
 		
 		//System.out.println("\nSingle Thread Time: "+elapsed_time_single);
-		System.out.println("Elapsed Time: " +elapsed_time);
+		System.out.println("Elapsed Time: " +elapsed_time +" ms");
 	    
 	}
 }
