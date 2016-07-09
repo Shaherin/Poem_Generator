@@ -1,0 +1,6 @@
+{
+  "name": "Poem generator",
+  "tagline": "UKZN COMP 316 Semester project - 2016",
+  "body": "##  Poem_Generator\r\n***\r\nUKZN COMP 316 (Natural Language Processing) Semester project - 2016\r\n\r\nCoded in eclipse using Java 8. Includes only the src folder of the eclipse project.\r\n\r\nThis project requires JWI (Java WordNet Interface) using WordNet 3.1, and the Stanford CoreNLP Library(2015). Both libraries need to be present in the project folder - or edit file paths in the wrapper classes for exception safety.\r\n\r\n\r\nReleased under the GNU General Public License v3.0\r\n\r\n\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
