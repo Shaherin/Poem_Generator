@@ -9,9 +9,9 @@ This project requires JWI (Java WordNet Interface) using WordNet 3.1, and the St
 Released under the GNU General Public License v3.0
 
 <b>Status:</b> <br>
-The project is now completed and functional, but is not in a desirable state. We are able to generate free verse a close approximation of sonnets. 
+The project is now completed and functional, but is not in a desirable state. We are able to generate free verse a close approximation of sonnets. <br>
 See "Poem Generation Report.pdf", in particular the concluding statements, for additional info.
 
 <b>NOTE:</b> <br>
-I do not find NLP particularly interesting on this level, so the purpose if this project evolved into investigating multithreading and design patterns in Java, with some degree of search optimization. This shows in the poem generation algorithm itself, as many NLP techniques were studied and added as functions but were never used in the final algorithm.
+I do not find NLP particularly interesting on this level, so the purpose if this project evolved into investigating multithreading and design patterns in Java, with some degree of search optimization. This shows in the poem generation algorithm itself, as many NLP techniques were studied and added as functions but were never used in the final algorithm.<br>
 A seperate project was done in C++ in optimization, with the intention of porting the progress to java and including it in this project. That was never done, and currently the search optimization is limited to a basic multithreaded search.
