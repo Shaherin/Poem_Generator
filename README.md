@@ -24,7 +24,7 @@ C++11 has come a long way in terms of its standard library and multithreading. W
 The purpose of design patterns is often to overcome certain issues/oversights in programming languages themselves, as well as to write maintainable, readable code. C++ is outright superior in this aspect, with just the use of function pointers, lambdas(much more and powerful than the identically named lambda in java) (the idea of functional interfaces are never enforced in C++), std::function and std::signal in C++11, you can overcome most design issues simply and concisely, leading to shorter, smarter, and even more readable code. <br>
 
 <i><b>On Optimization</b></i> <br>
-A large part of optimization is optimizing memory usage along with your preferred optimization algorithm. Memory management. Memory management. A person who can use a larger variety of tools well will almost always out perform a person of similar skill and a more limited toolset. There's no question that manual memory management is superior to any garbage collector, if used well.
+A large part of optimization is optimizing memory usage along with your preferred optimization algorithm. Memory management. Memory management. A person who can use a larger variety of tools well will almost always out perform a person of similar skill and a more limited toolset. Although java has improved over the years, there's no question that manual memory management is superior to any garbage collector, if used well.
 
 I'm sorry, is my C++ bias showing yet?
 
