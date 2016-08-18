@@ -1,5 +1,6 @@
 # Poem_Generator
-<b>UKZN COMP 316 (Natural Language Processing) Semester project - 2016</b>
+<b>UKZN COMP 316 (Natural Language Processing) Semester project - 2016</b> <br>
+github.io: http://shaherin.github.io/Poem_Generator/
 
 Coded in eclipse using Java 8. Includes only the src folder of the eclipse project.
 
