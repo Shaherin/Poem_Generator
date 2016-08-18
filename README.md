@@ -22,6 +22,7 @@ C++11 has come a long way in terms of its standard library and multithreading. W
 
 <i><b>On Design Patterns</b></i> <br>
 The purpose of design patterns is often to overcome certain issues/oversights in programming languages themselves, as well as to write maintainable, readable code. C++ is outright superior in this aspect, with just the use of function pointers, lambdas(much more and powerful than the identically named lambda in java) (the idea of functional interfaces are never enforced in C++), std::function and std::signal in C++11, you can overcome most design issues simply and concisely, leading to shorter, smarter, and even more readable code. <br>
+There isn't much in the way of information on updated design pattern coding in C++11, so if you're ever following a design pattern textbook and think to yourself: "Well, this seems superfluous, can't the same thing just be done by x?", chances are, it can and should.
 
 <i><b>On Optimization</b></i> <br>
 A large part of optimization is optimizing memory usage along with your preferred optimization algorithm. Memory management. Memory management. A person who can use a larger variety of tools well will almost always out perform a person of similar skill and a more limited toolset. Although java has improved over the years, there's no question that manual memory management is superior to any garbage collector, if used well.
