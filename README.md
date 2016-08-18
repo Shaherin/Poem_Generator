@@ -28,5 +28,5 @@ There isn't much in the way of information on updated design pattern coding in C
 <i><b>On Optimization</b></i> <br>
 A large part of optimization is optimizing memory usage along with your preferred optimization algorithm. Memory management. Memory management. A person who can use a larger variety of tools well will almost always out perform a person of similar skill and a more limited toolset. Although java has improved over the years, there's no question that manual memory management is superior to any garbage collector, if used well.
 
-I'm sorry, is my C++ bias showing yet?
+<i>I'm sorry, is my C++ bias showing yet?</i>
 
